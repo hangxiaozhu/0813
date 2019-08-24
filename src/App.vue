@@ -9,7 +9,7 @@
  <van-icon name="wap-home" slot="right" v-if="flag" @click="goHome"/>
 </van-nav-bar>
     <router-view/>
-  <van-tabbar v-model="active" route>
+  <van-tabbar v-model="active">
   <van-tabbar-item  to="/home" icon="wap-home">首页</van-tabbar-item>
   <van-tabbar-item to="/search" icon="search" >搜索</van-tabbar-item>
   <van-tabbar-item to="/cart" icon="cart-o" :info="$store.getters.getAllCount">购物车</van-tabbar-item>
