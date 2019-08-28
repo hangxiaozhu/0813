@@ -88,12 +88,27 @@ var store = new Vuex.Store({
                 })
                 // 把最新的 所有购物车商品的状态保存到 store 中去
             localStorage.setItem('car', JSON.stringify(state.car))
+        },
+        checkAllCar(state, inck) {
+            console.log(inck, "inck")
+            if (inck.checked == true) {
+                state.car.some(item => {
+                    item.selected = true
+                })
+            } else {
+                state.car.some(item => {
+                    item.selected = false
+                })
+            }
+            localStorage.setItem('car', JSON.stringify(state.car))
         }
+
 
 
 
     },
     getters: {
+
         getAllCount(state) {
             var c = 0;
             state.car.forEach(item => {
@@ -127,6 +142,28 @@ var store = new Vuex.Store({
                 }
             })
             return o
+        },
+        getAllCheck(state) {
+            var checkeds = '';
+            var arrCheck = []
+            state.car.some(item => {
+                if (item.selected == true) {
+                    arrCheck.push(item.selected)
+                }
+            })
+            console.log(arrCheck)
+            if (arrCheck.length == state.car.length) {
+                checkeds = true
+            } else {
+                checkeds = false
+            }
+            console.log(checkeds, '全选')
+            return checkeds
+
+
+
+
+
         }
     }
 
