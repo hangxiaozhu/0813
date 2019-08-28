@@ -15,11 +15,12 @@
 </div>
 
 <van-submit-bar
-  :price="parseFloat(this.$store.getters.getGoodsCountAndAmount.amount+'00')"
+  :price="parseFloat($store.getters.getGoodsCountAndAmount.amount+'00')"
   button-text="提交订单"
 >
+<van-checkbox v-model="checked" @change="checkAll(checked,$store.getters.getAllCheck)">全选</van-checkbox>
 <span slot="tip">
-    已勾选商品 <span class="red">{{$store.getters.getGoodsCountAndAmount.count }}</span> 件
+    已勾选商品 <span class="red">{{$store.getters.getGoodsCountAndAmount.count }} {{$store.getters.getAllCheck}}</span> 件
   </span>
   </van-submit-bar>
   </div>
@@ -35,11 +36,14 @@ import { Stepper } from 'vant';
 Vue.use(Stepper);
 import { SubmitBar } from 'vant';
 Vue.use(SubmitBar);
+import { Checkbox, CheckboxGroup } from 'vant';
+Vue.use(Checkbox).use(CheckboxGroup);
 export default {
   
   data () {
     return {
      goodslist: [],
+     checked:true
     }
   },
   created(){
@@ -77,6 +81,9 @@ export default {
     },
     selectedChanged(id,val){
       this.$store.commit('updateGoodsSelected',{id,selected:val})
+    },
+    checkAll(checked,all){
+      this.$store.commit('checkAllCar',{checked,all})
     }
 
   }
@@ -91,4 +98,5 @@ export default {
 .van-card__footer .van-button{margin-left: 5%;}
 .car-cover{padding-bottom: 50px;}
 .van-switch{margin-left: 2%;}
+.van-checkbox{margin-left: 2%;}
 </style>
