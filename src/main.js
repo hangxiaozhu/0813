@@ -27,10 +27,12 @@ Vue.http.options.root = "http://www.liulongbin.top:3005";
 // 全局设置post 时候表单数据格式组织形式
 Vue.http.options.emulateJson = true;
 Vue.config.productionTip = false
-var car = JSON.parse(localStorage.getItem('car') || '[]')
+var car = JSON.parse(localStorage.getItem('car') || '[]');
+
 var store = new Vuex.Store({
     state: {
         car: car
+
     },
     mutations: {
         addToCar(state, goodsinfo) {
@@ -90,16 +92,20 @@ var store = new Vuex.Store({
             localStorage.setItem('car', JSON.stringify(state.car))
         },
         checkAllCar(state, inck) {
-            console.log(inck, "inck")
+            console.log(inck.checked, "inck")
             if (inck.checked == true) {
-                state.car.some(item => {
-                    item.selected = true
-                })
-            } else {
                 state.car.some(item => {
                     item.selected = false
                 })
+            } else {
+                state.car.some(item => {
+                    item.selected = true
+                })
             }
+
+
+
+
             localStorage.setItem('car', JSON.stringify(state.car))
         }
 
@@ -149,15 +155,17 @@ var store = new Vuex.Store({
             state.car.some(item => {
                 if (item.selected == true) {
                     arrCheck.push(item.selected)
+                } else {
+                    checkeds = false
                 }
             })
-            console.log(arrCheck)
+            console.log(arrCheck, "1234")
             if (arrCheck.length == state.car.length) {
                 checkeds = true
             } else {
                 checkeds = false
             }
-            console.log(checkeds, '全选')
+            console.log(typeof(checkeds), '全选')
             return checkeds
 
 

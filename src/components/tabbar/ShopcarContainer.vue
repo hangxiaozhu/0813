@@ -18,7 +18,7 @@
   :price="parseFloat($store.getters.getGoodsCountAndAmount.amount+'00')"
   button-text="提交订单"
 >
-<van-checkbox v-model="checked" @change="checkAll(checked,$store.getters.getAllCheck)">全选</van-checkbox>
+<van-checkbox v-model="checked" @click="checkAll(checked)">全选</van-checkbox>
 <span slot="tip">
     已勾选商品 <span class="red">{{$store.getters.getGoodsCountAndAmount.count }} {{$store.getters.getAllCheck}}</span> 件
   </span>
@@ -43,7 +43,7 @@ export default {
   data () {
     return {
      goodslist: [],
-     checked:true
+     checked:this.$store.getters.getAllCheck
     }
   },
   created(){
@@ -80,10 +80,11 @@ export default {
       this.$store.commit('removeFormCar',id)
     },
     selectedChanged(id,val){
-      this.$store.commit('updateGoodsSelected',{id,selected:val})
+      this.$store.commit('updateGoodsSelected',{id,selected:val});
+       this.checked =  this.$store.getters.getAllCheck;
     },
-    checkAll(checked,all){
-      this.$store.commit('checkAllCar',{checked,all})
+    checkAll(checked){
+      this.$store.commit('checkAllCar',{checked:checked});
     }
 
   }
