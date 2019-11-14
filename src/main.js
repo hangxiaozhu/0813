@@ -8,7 +8,7 @@ import Resource from 'vue-resource'
 Vue.use(Resource)
 import Vuex from 'vuex'
 Vue.use(Vuex)
-    // 引入vant 组件 
+    // 引入vant 组件
 import { Tabbar, TabbarItem } from 'vant';
 Vue.use(Tabbar).use(TabbarItem);
 import { NavBar } from 'vant';
@@ -61,7 +61,7 @@ var store = new Vuex.Store({
         },
         updateGoodsInfo(state, goodsinfo) {
             // 修改购物车中商品的数量值
-            // 分析： 
+            // 分析：
             state.car.some(item => {
                     if (item.id == goodsinfo.id) {
                         item.count = parseInt(goodsinfo.count)
@@ -159,13 +159,13 @@ var store = new Vuex.Store({
                     checkeds = false
                 }
             })
-            console.log(arrCheck, "1234")
-            if (arrCheck.length == state.car.length) {
+            console.log(arrCheck.length, "1234")
+            if (arrCheck.length == state.car.length && arrCheck.length > 0) {
                 checkeds = true
             } else {
                 checkeds = false
             }
-            console.log(typeof(checkeds), '全选')
+            console.log(checkeds, '全选');
             return checkeds
 
 

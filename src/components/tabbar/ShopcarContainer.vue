@@ -77,7 +77,8 @@ export default {
     },
     remove(id,index){
       this.goodslist.splice(index,1);
-      this.$store.commit('removeFormCar',id)
+      this.$store.commit('removeFormCar',id);
+      this.checked =  this.$store.getters.getAllCheck;
     },
     selectedChanged(id,val){
       this.$store.commit('updateGoodsSelected',{id,selected:val});
