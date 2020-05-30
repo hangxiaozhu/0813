@@ -23,7 +23,7 @@ Vue.filter("dateFormate", function(dataStr) {
         return moment(dataStr).format('YYYY-MM-DD HH:mm:ss')
     })
     //设置请求跟路径
-Vue.http.options.root = "http://www.liulongbin.top:3005";
+Vue.http.options.root = "http://api.cms.liulongbin.top";
 // 全局设置post 时候表单数据格式组织形式
 Vue.http.options.emulateJson = true;
 Vue.config.productionTip = false
